@@ -51,6 +51,6 @@ workflows:
       - publish_dockerhub:
           filters:
             tags:
-              only: /^v.*/
+              only: /mytag/
           requires:
             - build_docker_image
