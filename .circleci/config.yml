@@ -47,7 +47,10 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build_docker_image
+      - build_docker_image:
+          filters:
+            tags:
+              only: /mytag/
       - publish_dockerhub:
           filters:
             tags:
