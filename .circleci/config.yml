@@ -1,0 +1,57 @@
+version: 2.0
+
+defaults: &defaults
+
+  working_directory: /home/circleci/project
+
+  workspace_root: &workspace_root
+    /tmp/workspace
+
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace_root
+
+references:
+  container_config: &container_config
+    docker:
+      - image: docker:17.11.0-ce-git
+
+  dockerhub_login: &dockerhub_login
+    run:
+      name: DockerHub Login
+      command: |
+        docker login -u ${DOCKERHUB_LOGIN} -p ${DOCKERHUB_PASS}
+
+jobs:
+  build_docker_image:
+    <<: *defaults
+    <<: *container_config
+
+    steps:
+      - run:
+          name: Build Horizon Docker Image
+          command: |
+            echo "This is build_docker_image"
+
+  publish_dockerhub:
+    <<: *defaults
+    <<: *container_config
+
+    steps:
+      - run:
+          name: Publish and Release
+          command: |
+            echo "This is publish and release"
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build_docker_image
+      - publish_dockerhub:
+          filters:
+            tags:
+              only:
+                - /^[0-9].*/
+          requires:
+            - build_docker_image
