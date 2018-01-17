@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Generate repository cache key
           command: |
-            echo "export REPO_CACHE_KEY=$(git describe)" >> ${BASH_ENV}
+            echo "export REPO_CACHE_KEY=$(git describe --always)" >> ${BASH_ENV}
       - run:
           name: Build Horizon Docker Image
           command: |
