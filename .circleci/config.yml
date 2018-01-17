@@ -28,10 +28,15 @@ jobs:
     <<: *container_config
 
     steps:
+      - checkout
       - run:
           name: Build Horizon Docker Image
           command: |
             echo "This is build_docker_image"
+            pwd
+      - save_cache:
+          paths:
+            - ./
 
   publish_dockerhub:
     <<: *defaults
