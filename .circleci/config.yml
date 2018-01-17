@@ -35,6 +35,7 @@ jobs:
             echo "This is build_docker_image"
             pwd
       - save_cache:
+          key: "$(git describe)"
           paths:
             - ./
 
