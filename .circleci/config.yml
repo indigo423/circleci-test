@@ -43,6 +43,8 @@ jobs:
     <<: *container_config
 
     steps:
+      - restore_cache:
+          key: $(git describe)
       - run:
           name: Publish and Release
           command: |
