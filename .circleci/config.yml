@@ -42,6 +42,10 @@ jobs:
           name: Generate some files
           command: |
             echo "huhu" >> test.txt
+      - run:
+          name: Check REPO_CACHE_KEY
+          command: |
+            echo ${REPO_CACHE_KEY}
       - save_cache:
           key: ${REPO_CACHE_KEY}
           paths:
