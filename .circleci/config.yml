@@ -73,12 +73,6 @@ workflows:
   build_and_deploy:
     jobs:
       - build_docker_image:
-          filters:
-            tags:
-              only: /mytag/
       - publish_dockerhub:
-          filters:
-            tags:
-              only: /mytag/
           requires:
             - build_docker_image
