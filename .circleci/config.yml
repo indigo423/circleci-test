@@ -45,7 +45,10 @@ jobs:
       - run:
           name: Commit change
           command: |
-            git commit -am "Release commit note"
+            git config credential.helper cache
+            git config user.email "ronny@no42.org"
+            git config user.name "CircleCi Bot"
+            git commit --allow-empty -m "Trigger build and publishing"
             git push
       - run:
           name: Check REPO_CACHE_KEY
