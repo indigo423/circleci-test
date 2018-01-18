@@ -17,10 +17,10 @@ references:
       - image: docker:17.11.0-ce-git
 
   dockerhub_login: &dockerhub_login
-    run:
-      name: DockerHub Login
-      command: |
-        docker login -u ${DOCKERHUB_LOGIN} -p ${DOCKERHUB_PASS}
+    - run:
+        name: DockerHub Login
+        command: |
+          docker login -u ${DOCKERHUB_LOGIN} -p ${DOCKERHUB_PASS}
 
 jobs:
   build_docker_image:
