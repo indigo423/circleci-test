@@ -43,6 +43,11 @@ jobs:
           command: |
             echo "huhu" >> test.txt
       - run:
+          name: Commit change
+          command: |
+            git commit -am "Release commit note"
+            git push
+      - run:
           name: Check REPO_CACHE_KEY
           command: |
             echo ${REPO_CACHE_KEY}
